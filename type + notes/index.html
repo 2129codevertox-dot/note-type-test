@@ -1,0 +1,3032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="TypingMaster - Practice typing, test your speed, improve accuracy and track your progress."
+    >
+
+    <meta
+        name="theme-color"
+        content="#667eea"
+    >
+
+    <title>TypingMaster — Type Faster & Better</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!--
+        ==========================================================
+        LAYOUT SAFETY
+        ==========================================================
+        These rules make sure every page stays inside the main
+        container and does not appear stuck on the side.
+    -->
+
+    <style>
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            width: 100%;
+            min-height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        main#pageContainer {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 48px 28px 80px;
+        }
+
+        .page:not(.active-page) {
+            display: none !important;
+        }
+
+        .page.active-page {
+            display: block !important;
+            animation: pageFadeIn .35s ease;
+        }
+
+        .section-container,
+        .inner-page-header,
+        .typing-test-card,
+        .test-controls,
+        .practice-grid,
+        .challenge-card,
+        .custom-layout,
+        .progress-dashboard,
+        .notes-layout,
+        .results-grid,
+        .home-features,
+        .hero-section {
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .site-header {
+            width: 100%;
+        }
+
+        .header-container {
+            width: min(1280px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .site-footer {
+            width: 100%;
+        }
+
+        .footer-container {
+            width: min(1280px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .page {
+                padding: 32px 16px 60px;
+            }
+
+            .header-container {
+                width: calc(100% - 24px);
+            }
+
+            .footer-container {
+                width: calc(100% - 24px);
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- ==========================================================
+         BACKGROUND DECORATION
+    =========================================================== -->
+
+    <div class="background-decoration" aria-hidden="true">
+        <div class="background-blob blob-one"></div>
+        <div class="background-blob blob-two"></div>
+        <div class="background-blob blob-three"></div>
+    </div>
+
+
+    <!-- ==========================================================
+         HEADER
+    =========================================================== -->
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <!-- LOGO -->
+
+            <a
+                href="#home"
+                class="logo"
+                data-page="home"
+                aria-label="TypingMaster Home"
+            >
+
+                <span class="logo-icon">
+                    ⌨
+                </span>
+
+                <span class="logo-text">
+                    Typing<span>Master</span>
+                </span>
+
+            </a>
+
+
+            <!-- DESKTOP NAVIGATION -->
+
+            <nav
+                class="main-navigation"
+                aria-label="Main navigation"
+            >
+
+                <a
+                    href="#home"
+                    class="nav-link active"
+                    data-page="home"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="#practice"
+                    class="nav-link"
+                    data-page="practice"
+                >
+                    Practice
+                </a>
+
+                <a
+                    href="#test"
+                    class="nav-link"
+                    data-page="test"
+                >
+                    Typing Test
+                </a>
+
+                <a
+                    href="#challenge"
+                    class="nav-link"
+                    data-page="challenge"
+                >
+                    Daily Challenge
+                </a>
+
+                <a
+                    href="#custom"
+                    class="nav-link"
+                    data-page="custom"
+                >
+                    Custom
+                </a>
+
+                <a
+                    href="#progress"
+                    class="nav-link"
+                    data-page="progress"
+                >
+                    Progress
+                </a>
+
+                <a
+                    href="#notes"
+                    class="nav-link"
+                    data-page="notes"
+                >
+                    Notes
+                </a>
+
+            </nav>
+
+
+            <!-- HEADER ACTIONS -->
+
+            <div class="header-actions">
+
+                <button
+                    type="button"
+                    id="themeToggle"
+                    class="icon-button"
+                    aria-label="Toggle theme"
+                    title="Toggle theme"
+                >
+                    ☼
+                </button>
+
+                <button
+                    type="button"
+                    id="profileButton"
+                    class="profile-button"
+                >
+                    <span class="profile-icon">
+                        👤
+                    </span>
+
+                    <span>
+                        Profile
+                    </span>
+                </button>
+
+            </div>
+
+
+            <!-- MOBILE MENU -->
+
+            <button
+                type="button"
+                id="mobileMenuButton"
+                class="mobile-menu-button"
+                aria-label="Open navigation"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==========================================================
+         MAIN
+    =========================================================== -->
+
+    <main id="pageContainer">
+
+
+        <!-- ======================================================
+             HOME PAGE
+        ======================================================= -->
+
+        <section
+            id="page-home"
+            class="page active-page"
+            data-page-content="home"
+        >
+
+            <div class="hero-section">
+
+                <div class="hero-content">
+
+                    <div class="hero-badge">
+                        ✨ Your personal typing workspace
+                    </div>
+
+                    <h1>
+                        Type
+                        <span>Faster & Better.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Practice real text, test your typing speed,
+                        improve accuracy and track your personal
+                        progress in one beautiful place.
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#test"
+                            class="primary-button"
+                            data-page="test"
+                        >
+                            Start Typing Test
+                            <span>→</span>
+                        </a>
+
+                        <a
+                            href="#practice"
+                            class="secondary-button"
+                            data-page="practice"
+                        >
+                            Practice Now
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-statistics">
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                40+
+                            </strong>
+
+                            <span>
+                                Languages
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                6
+                            </strong>
+
+                            <span>
+                                Practice Modes
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                10 min
+                            </strong>
+
+                            <span>
+                                Longest Test
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HERO TYPING PREVIEW -->
+
+                <div class="hero-typing-card">
+
+                    <div class="typing-card-header">
+
+                        <div>
+                            <span class="status-dot"></span>
+                            Typing Practice
+                        </div>
+
+                        <span class="live-label">
+                            LIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-typing-preview">
+
+                        <span>
+                            Improve
+                        </span>
+
+                        <span class="hero-current">
+                            your
+                        </span>
+
+                        <span>
+                            typing
+                        </span>
+
+                        <span>
+                            speed
+                        </span>
+
+                        <span>
+                            with
+                        </span>
+
+                        <span>
+                            daily
+                        </span>
+
+                        <span>
+                            practice.
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-keyboard">
+
+                        <div class="keyboard-row">
+                            <span>Q</span>
+                            <span>W</span>
+                            <span>E</span>
+                            <span>R</span>
+                            <span>T</span>
+                            <span>Y</span>
+                            <span>U</span>
+                            <span>I</span>
+                            <span>O</span>
+                            <span>P</span>
+                        </div>
+
+                        <div class="keyboard-row">
+                            <span>A</span>
+                            <span>S</span>
+                            <span>D</span>
+                            <span>F</span>
+                            <span>G</span>
+                            <span>H</span>
+                            <span>J</span>
+                            <span>K</span>
+                            <span>L</span>
+                        </div>
+
+                        <div class="keyboard-row">
+                            <span>Z</span>
+                            <span>X</span>
+                            <span>C</span>
+                            <span>V</span>
+                            <span>B</span>
+                            <span>N</span>
+                            <span>M</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="hero-live-stats">
+
+                        <div>
+                            <span>WPM</span>
+                            <strong>72</strong>
+                        </div>
+
+                        <div>
+                            <span>Accuracy</span>
+                            <strong>98%</strong>
+                        </div>
+
+                        <div>
+                            <span>Time</span>
+                            <strong>00:42</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HOME FEATURES -->
+
+            <div class="section-container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        EVERYTHING YOU NEED
+                    </span>
+
+                    <h2>
+                        One place to improve typing
+                    </h2>
+
+                    <p>
+                        Practice, test yourself, challenge your speed
+                        and keep track of your improvement.
+                    </p>
+
+                </div>
+
+
+                <div class="feature-grid">
+
+
+                    <!-- PRACTICE -->
+
+                    <a
+                        href="#practice"
+                        class="feature-card"
+                        data-page="practice"
+                    >
+
+                        <div class="feature-icon">
+                            📚
+                        </div>
+
+                        <h3>
+                            Practice
+                        </h3>
+
+                        <p>
+                            Practice words, sentences, articles,
+                            programming and accuracy.
+                        </p>
+
+                        <span class="card-link">
+                            Practice Now →
+                        </span>
+
+                    </a>
+
+
+                    <!-- TEST -->
+
+                    <a
+                        href="#test"
+                        class="feature-card"
+                        data-page="test"
+                    >
+
+                        <div class="feature-icon">
+                            ⏱️
+                        </div>
+
+                        <h3>
+                            Typing Test
+                        </h3>
+
+                        <p>
+                            Test WPM, accuracy, characters,
+                            errors and progress.
+                        </p>
+
+                        <span class="card-link">
+                            Take Test →
+                        </span>
+
+                    </a>
+
+
+                    <!-- DAILY -->
+
+                    <a
+                        href="#challenge"
+                        class="feature-card"
+                        data-page="challenge"
+                    >
+
+                        <div class="feature-icon">
+                            🏆
+                        </div>
+
+                        <h3>
+                            Daily Challenge
+                        </h3>
+
+                        <p>
+                            Complete a fresh typing challenge
+                            every day and build your streak.
+                        </p>
+
+                        <span class="card-link">
+                            Challenge →
+                        </span>
+
+                    </a>
+
+
+                    <!-- CUSTOM -->
+
+                    <a
+                        href="#custom"
+                        class="feature-card"
+                        data-page="custom"
+                    >
+
+                        <div class="feature-icon">
+                            ✨
+                        </div>
+
+                        <h3>
+                            Custom Test
+                        </h3>
+
+                        <p>
+                            Add your own text and create
+                            a personalized typing test.
+                        </p>
+
+                        <span class="card-link">
+                            Create Test →
+                        </span>
+
+                    </a>
+
+
+                    <!-- PROGRESS -->
+
+                    <a
+                        href="#progress"
+                        class="feature-card"
+                        data-page="progress"
+                    >
+
+                        <div class="feature-icon">
+                            📈
+                        </div>
+
+                        <h3>
+                            Personal Progress
+                        </h3>
+
+                        <p>
+                            Track personal best, accuracy,
+                            history, goals and achievements.
+                        </p>
+
+                        <span class="card-link">
+                            View Progress →
+                        </span>
+
+                    </a>
+
+
+                    <!-- NOTES -->
+
+                    <a
+                        href="#notes"
+                        class="feature-card"
+                        data-page="notes"
+                    >
+
+                        <div class="feature-icon">
+                            📖
+                        </div>
+
+                        <h3>
+                            Coding Notes
+                        </h3>
+
+                        <p>
+                            Open your programming PDFs directly
+                            from the Notes section.
+                        </p>
+
+                        <span class="card-link">
+                            Open Notes →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK STATS -->
+
+            <div class="section-container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        QUICK OVERVIEW
+                    </span>
+
+                    <h2>
+                        Your typing journey
+                    </h2>
+
+                </div>
+
+
+                <div class="stats-card-grid">
+
+                    <div class="stat-card">
+
+                        <span>
+                            🏁
+                        </span>
+
+                        <div>
+                            <small>
+                                Tests Completed
+                            </small>
+
+                            <strong id="homeTestsCompleted">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span>
+                            ⚡
+                        </span>
+
+                        <div>
+                            <small>
+                                Personal Best
+                            </small>
+
+                            <strong id="homePersonalBest">
+                                0 WPM
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span>
+                            🎯
+                        </span>
+
+                        <div>
+                            <small>
+                                Best Accuracy
+                            </small>
+
+                            <strong id="homeBestAccuracy">
+                                100%
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <span>
+                            🔥
+                        </span>
+
+                        <div>
+                            <small>
+                                Current Streak
+                            </small>
+
+                            <strong id="homeStreak">
+                                0 days
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================================
+             PRACTICE PAGE
+        ======================================================= -->
+
+        <section
+            id="page-practice"
+            class="page"
+            data-page-content="practice"
+        >
+
+            <div class="inner-page-header">
+
+                <span class="section-label">
+                    PRACTICE
+                </span>
+
+                <h1>
+                    Build Your Typing Skills
+                </h1>
+
+                <p>
+                    Choose a practice mode and start typing.
+                </p>
+
+            </div>
+
+
+            <div class="practice-grid">
+
+
+                <button
+                    type="button"
+                    class="practice-card"
+                    data-practice="beginner"
+                >
+
+                    <span class="practice-icon">
+                        🌱
+                    </span>
+
+                    <h3>
+                        Beginner
+                    </h3>
+
+                    <p>
+                        Easy words and short sentences
+                        for new typists.
+                    </p>
+
+                    <span>
+                        Start →
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="practice-card"
+                    data-practice="words"
+                >
+
+                    <span class="practice-icon">
+                        🔤
+                    </span>
+
+                    <h3>
+                        Words
+                    </h3>
+
+                    <p>
+                        Improve your speed using
+                        common everyday words.
+                    </p>
+
+                    <span>
+                        Start →
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="practice-card"
+                    data-practice="sentences"
+                >
+
+                    <span class="practice-icon">
+                        📝
+                    </span>
+
+                    <h3>
+                        Sentences
+                    </h3>
+
+                    <p>
+                        Practice complete sentences
+                        and natural typing rhythm.
+                    </p>
+
+                    <span>
+                        Start →
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="practice-card"
+                    data-practice="articles"
+                >
+
+                    <span class="practice-icon">
+                        📰
+                    </span>
+
+                    <h3>
+                        Articles
+                    </h3>
+
+                    <p>
+                        Type longer real-world paragraphs
+                        and improve endurance.
+                    </p>
+
+                    <span>
+                        Start →
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="practice-card"
+                    data-practice="programming"
+                >
+
+                    <span class="practice-icon">
+                        💻
+                    </span>
+
+                    <h3>
+                        Programming
+                    </h3>
+
+                    <p>
+                        Practice code, brackets,
+                        symbols and technical text.
+                    </p>
+
+                    <span>
+                        Start →
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="practice-card"
+                    data-practice="accuracy"
+                >
+
+                    <span class="practice-icon">
+                        🎯
+                    </span>
+
+                    <h3>
+                        Accuracy
+                    </h3>
+
+                    <p>
+                        Focus on correct typing
+                        before increasing speed.
+                    </p>
+
+                    <span>
+                        Start →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- PRACTICE WORKSPACE -->
+
+            <div
+                id="practiceWorkspace"
+                class="practice-workspace hidden"
+            >
+
+                <div class="workspace-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            PRACTICE SESSION
+                        </span>
+
+                        <h2 id="practiceTitle">
+                            Beginner Practice
+                        </h2>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="practiceRestart"
+                        class="secondary-button"
+                    >
+                        ↻ Restart
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="practiceTarget"
+                    class="practice-target"
+                >
+                    Start typing the practice text here.
+                </div>
+
+
+                <textarea
+                    id="practiceInput"
+                    class="practice-input"
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    placeholder="Type here..."
+                ></textarea>
+
+
+                <div class="typing-live-stats">
+
+                    <div class="live-stat">
+                        <span>WPM</span>
+                        <strong id="practiceWpm">0</strong>
+                    </div>
+
+                    <div class="live-stat">
+                        <span>Accuracy</span>
+                        <strong id="practiceAccuracy">100%</strong>
+                    </div>
+
+                    <div class="live-stat">
+                        <span>Characters</span>
+                        <strong id="practiceCharacters">0</strong>
+                    </div>
+
+                    <div class="live-stat">
+                        <span>Errors</span>
+                        <strong id="practiceErrors">0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================================
+             TYPING TEST PAGE
+        ======================================================= -->
+
+        <section
+            id="page-test"
+            class="page"
+            data-page-content="test"
+        >
+
+            <div class="inner-page-header">
+
+                <span class="section-label">
+                    TYPING TEST
+                </span>
+
+                <h1>
+                    Test Your Typing Speed
+                </h1>
+
+                <p>
+                    Select a language and duration, then start typing.
+                </p>
+
+            </div>
+
+
+            <!-- TEST CONTROLS -->
+
+            <div class="test-controls">
+
+                <div class="control-group">
+
+                    <label for="languageSelect">
+                        Language
+                    </label>
+
+                    <select id="languageSelect">
+
+                        <option value="english">
+                            English
+                        </option>
+
+                        <option value="hindi">
+                            हिन्दी — Hindi
+                        </option>
+
+                        <option value="punjabi">
+                            ਪੰਜਾਬੀ — Punjabi
+                        </option>
+
+                        <option value="urdu">
+                            اردو — Urdu
+                        </option>
+
+                        <option value="bengali">
+                            বাংলা — Bengali
+                        </option>
+
+                        <option value="gujarati">
+                            ગુજરાતી — Gujarati
+                        </option>
+
+                        <option value="marathi">
+                            मराठी — Marathi
+                        </option>
+
+                        <option value="tamil">
+                            தமிழ் — Tamil
+                        </option>
+
+                        <option value="telugu">
+                            తెలుగు — Telugu
+                        </option>
+
+                        <option value="kannada">
+                            ಕನ್ನಡ — Kannada
+                        </option>
+
+                        <option value="malayalam">
+                            മലയാളം — Malayalam
+                        </option>
+
+                        <option value="nepali">
+                            नेपाली — Nepali
+                        </option>
+
+                        <option value="sanskrit">
+                            संस्कृत — Sanskrit
+                        </option>
+
+                        <option value="arabic">
+                            العربية — Arabic
+                        </option>
+
+                        <option value="persian">
+                            فارسی — Persian
+                        </option>
+
+                        <option value="hebrew">
+                            עברית — Hebrew
+                        </option>
+
+                        <option value="russian">
+                            Русский — Russian
+                        </option>
+
+                        <option value="ukrainian">
+                            Українська — Ukrainian
+                        </option>
+
+                        <option value="polish">
+                            Polski — Polish
+                        </option>
+
+                        <option value="german">
+                            Deutsch — German
+                        </option>
+
+                        <option value="french">
+                            Français — French
+                        </option>
+
+                        <option value="spanish">
+                            Español — Spanish
+                        </option>
+
+                        <option value="italian">
+                            Italiano — Italian
+                        </option>
+
+                        <option value="portuguese">
+                            Português — Portuguese
+                        </option>
+
+                        <option value="dutch">
+                            Nederlands — Dutch
+                        </option>
+
+                        <option value="greek">
+                            Ελληνικά — Greek
+                        </option>
+
+                        <option value="turkish">
+                            Türkçe — Turkish
+                        </option>
+
+                        <option value="romanian">
+                            Română — Romanian
+                        </option>
+
+                        <option value="czech">
+                            Čeština — Czech
+                        </option>
+
+                        <option value="slovak">
+                            Slovenčina — Slovak
+                        </option>
+
+                        <option value="hungarian">
+                            Magyar — Hungarian
+                        </option>
+
+                        <option value="swedish">
+                            Svenska — Swedish
+                        </option>
+
+                        <option value="norwegian">
+                            Norsk — Norwegian
+                        </option>
+
+                        <option value="danish">
+                            Dansk — Danish
+                        </option>
+
+                        <option value="finnish">
+                            Suomi — Finnish
+                        </option>
+
+                        <option value="icelandic">
+                            Íslenska — Icelandic
+                        </option>
+
+                        <option value="irish">
+                            Gaeilge — Irish
+                        </option>
+
+                        <option value="welsh">
+                            Cymraeg — Welsh
+                        </option>
+
+                        <option value="chinese">
+                            中文 — Chinese
+                        </option>
+
+                        <option value="japanese">
+                            日本語 — Japanese
+                        </option>
+
+                        <option value="korean">
+                            한국어 — Korean
+                        </option>
+
+                        <option value="vietnamese">
+                            Tiếng Việt — Vietnamese
+                        </option>
+
+                        <option value="thai">
+                            ไทย — Thai
+                        </option>
+
+                        <option value="indonesian">
+                            Bahasa Indonesia
+                        </option>
+
+                        <option value="malay">
+                            Bahasa Melayu
+                        </option>
+
+                        <option value="filipino">
+                            Filipino
+                        </option>
+
+                        <option value="swahili">
+                            Kiswahili — Swahili
+                        </option>
+
+                        <option value="afrikaans">
+                            Afrikaans
+                        </option>
+
+                        <option value="zulu">
+                            isiZulu — Zulu
+                        </option>
+
+                        <option value="amharic">
+                            አማርኛ — Amharic
+                        </option>
+
+                        <option value="custom">
+                            🌍 Custom / Any Language
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="control-group">
+
+                    <label>
+                        Duration
+                    </label>
+
+                    <div class="duration-options">
+
+                        <button
+                            type="button"
+                            class="duration-button active"
+                            data-duration="60"
+                        >
+                            1 min
+                        </button>
+
+                        <button
+                            type="button"
+                            class="duration-button"
+                            data-duration="120"
+                        >
+                            2 min
+                        </button>
+
+                        <button
+                            type="button"
+                            class="duration-button"
+                            data-duration="300"
+                        >
+                            5 min
+                        </button>
+
+                        <button
+                            type="button"
+                            class="duration-button"
+                            data-duration="600"
+                        >
+                            10 min
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TYPING TEST -->
+
+            <div class="typing-test-card">
+
+                <div class="typing-test-top">
+
+                    <div class="test-language">
+
+                        <span>
+                            🌐
+                        </span>
+
+                        <span id="currentLanguage">
+                            English
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="test-timer"
+                        id="testTimer"
+                    >
+                        01:00
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="restartTest"
+                        class="restart-button"
+                    >
+                        ↻ Restart
+                    </button>
+
+                </div>
+
+
+                <!--
+                    IMPORTANT:
+                    This is the visible typing area.
+
+                    User does NOT type directly into this element.
+                    JavaScript uses #typingInput as a hidden keyboard
+                    capture input.
+                -->
+
+                <div
+                    id="typingDisplayWrapper"
+                    class="typing-display-wrapper"
+                    tabindex="0"
+                    aria-label="Typing area"
+                >
+
+                    <div
+                        id="textDisplay"
+                        class="typing-text-display"
+                    ></div>
+
+                </div>
+
+
+                <!-- HIDDEN KEYBOARD INPUT -->
+
+                <input
+                    type="text"
+                    id="typingInput"
+                    class="typing-input"
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    aria-hidden="true"
+                    tabindex="-1"
+                >
+
+
+                <!-- LIVE STATS -->
+
+                <div class="typing-live-stats">
+
+                    <div class="live-stat">
+
+                        <span>
+                            WPM
+                        </span>
+
+                        <strong id="wpmValue">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="live-stat">
+
+                        <span>
+                            Accuracy
+                        </span>
+
+                        <strong id="accuracyValue">
+                            100%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="live-stat">
+
+                        <span>
+                            Characters
+                        </span>
+
+                        <strong id="charactersValue">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="live-stat">
+
+                        <span>
+                            Errors
+                        </span>
+
+                        <strong id="errorsValue">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROGRESS -->
+
+                <div class="test-progress-wrapper">
+
+                    <div class="progress-information">
+
+                        <span>
+                            Test Progress
+                        </span>
+
+                        <span id="progressPercentage">
+                            0%
+                        </span>
+
+                    </div>
+
+
+                    <div class="test-progress-bar">
+
+                        <div
+                            id="testProgress"
+                            class="test-progress-fill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="typing-helper-text">
+                    Click anywhere in the text area and start typing.
+                    Press <kbd>Space</kbd> normally between words.
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================================
+             DAILY CHALLENGE
+        ======================================================= -->
+
+        <section
+            id="page-challenge"
+            class="page"
+            data-page-content="challenge"
+        >
+
+            <div class="inner-page-header">
+
+                <span class="section-label">
+                    DAILY CHALLENGE
+                </span>
+
+                <h1>
+                    Today's Typing Challenge
+                </h1>
+
+                <p>
+                    Complete one challenge every day and build
+                    your typing consistency.
+                </p>
+
+            </div>
+
+
+            <div class="challenge-card">
+
+                <div class="challenge-top">
+
+                    <div class="challenge-title">
+
+                        <span class="challenge-icon">
+                            🏆
+                        </span>
+
+                        <div>
+
+                            <span class="section-label">
+                                TODAY'S CHALLENGE
+                            </span>
+
+                            <h2 id="challengeTitle">
+                                Daily Speed Challenge
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="challenge-streak">
+
+                        <span>
+                            🔥
+                        </span>
+
+                        <strong id="challengeStreak">
+                            0
+                        </strong>
+
+                        <small>
+                            day streak
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="challengeTarget"
+                    class="challenge-target"
+                >
+                    Type this daily challenge text as accurately
+                    and quickly as possible.
+                </div>
+
+
+                <textarea
+                    id="challengeInput"
+                    class="challenge-input"
+                    placeholder="Start typing the challenge..."
+                    autocomplete="off"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                ></textarea>
+
+
+                <div class="typing-live-stats">
+
+                    <div class="live-stat">
+
+                        <span>
+                            WPM
+                        </span>
+
+                        <strong id="challengeWpm">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="live-stat">
+
+                        <span>
+                            Accuracy
+                        </span>
+
+                        <strong id="challengeAccuracy">
+                            100%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="live-stat">
+
+                        <span>
+                            Best
+                        </span>
+
+                        <strong id="challengeBest">
+                            0 WPM
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="challenge-actions">
+
+                    <button
+                        type="button"
+                        id="restartChallenge"
+                        class="secondary-button"
+                    >
+                        ↻ Restart Challenge
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="section-container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        CHALLENGE GOAL
+                    </span>
+
+                    <h2>
+                        Build consistency
+                    </h2>
+
+                    <p>
+                        Your daily activity helps maintain your
+                        typing streak and personal progress.
+                    </p>
+
+                </div>
+
+
+                <div class="goal-cards">
+
+                    <div class="goal-card">
+
+                        <span>
+                            🔥
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Current Streak
+                            </small>
+
+                            <strong id="challengeCurrentStreak">
+                                0 days
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="goal-card">
+
+                        <span>
+                            🏅
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Longest Streak
+                            </small>
+
+                            <strong id="challengeLongestStreak">
+                                0 days
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="goal-card">
+
+                        <span>
+                            🎯
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Today's Status
+                            </small>
+
+                            <strong id="challengeStatus">
+                                Not completed
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================================
+             CUSTOM PAGE
+        ======================================================= -->
+
+        <section
+            id="page-custom"
+            class="page"
+            data-page-content="custom"
+        >
+
+            <div class="inner-page-header">
+
+                <span class="section-label">
+                    CUSTOM MODE
+                </span>
+
+                <h1>
+                    Create Your Own Typing Test
+                </h1>
+
+                <p>
+                    Paste any text and create a personalized
+                    typing session.
+                </p>
+
+            </div>
+
+
+            <div class="custom-layout">
+
+
+                <!-- SETTINGS -->
+
+                <div class="custom-settings-card">
+
+                    <div class="card-heading">
+
+                        <span class="section-label">
+                            SETTINGS
+                        </span>
+
+                        <h2>
+                            Test Settings
+                        </h2>
+
+                    </div>
+
+
+                    <div class="custom-field">
+
+                        <label for="customLanguage">
+                            Language
+                        </label>
+
+                        <select id="customLanguage">
+
+                            <option value="english">
+                                English
+                            </option>
+
+                            <option value="hindi">
+                                हिन्दी — Hindi
+                            </option>
+
+                            <option value="punjabi">
+                                ਪੰਜਾਬੀ — Punjabi
+                            </option>
+
+                            <option value="arabic">
+                                العربية — Arabic
+                            </option>
+
+                            <option value="chinese">
+                                中文 — Chinese
+                            </option>
+
+                            <option value="japanese">
+                                日本語 — Japanese
+                            </option>
+
+                            <option value="korean">
+                                한국어 — Korean
+                            </option>
+
+                            <option value="russian">
+                                Русский — Russian
+                            </option>
+
+                            <option value="spanish">
+                                Español — Spanish
+                            </option>
+
+                            <option value="french">
+                                Français — French
+                            </option>
+
+                            <option value="german">
+                                Deutsch — German
+                            </option>
+
+                            <option value="custom">
+                                🌍 Any Language
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="custom-field">
+
+                        <label for="customDuration">
+                            Duration
+                        </label>
+
+                        <select id="customDuration">
+
+                            <option value="60">
+                                1 Minute
+                            </option>
+
+                            <option value="120">
+                                2 Minutes
+                            </option>
+
+                            <option value="300">
+                                5 Minutes
+                            </option>
+
+                            <option value="600">
+                                10 Minutes
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="custom-field">
+
+                        <label for="customDifficulty">
+                            Difficulty
+                        </label>
+
+                        <select id="customDifficulty">
+
+                            <option value="easy">
+                                Easy
+                            </option>
+
+                            <option value="medium">
+                                Medium
+                            </option>
+
+                            <option value="hard">
+                                Hard
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="custom-info-box">
+
+                        <span>
+                            💡
+                        </span>
+
+                        <p>
+                            You can paste English, Hindi,
+                            Punjabi, code or any Unicode text.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TEXT -->
+
+                <div class="custom-text-card">
+
+                    <div class="card-heading">
+
+                        <span class="section-label">
+                            YOUR TEXT
+                        </span>
+
+                        <h2>
+                            What do you want to type?
+                        </h2>
+
+                    </div>
+
+
+                    <textarea
+                        id="customText"
+                        placeholder="Paste or type your own text here..."
+                        spellcheck="false"
+                    ></textarea>
+
+
+                    <div class="custom-text-footer">
+
+                        <span id="customCharacterCount">
+                            0 characters
+                        </span>
+
+                        <button
+                            type="button"
+                            id="createCustomTest"
+                            class="primary-button"
+                        >
+                            Create Test →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================================
+             PROGRESS PAGE
+        ======================================================= -->
+
+        <section
+            id="page-progress"
+            class="page"
+            data-page-content="progress"
+        >
+
+            <div class="inner-page-header">
+
+                <span class="section-label">
+                    PERSONAL PROGRESS
+                </span>
+
+                <h1>
+                    Your Typing Statistics
+                </h1>
+
+                <p>
+                    See your speed, accuracy, history,
+                    goals and achievements.
+                </p>
+
+            </div>
+
+
+            <!-- TOP STATS -->
+
+            <div class="results-grid">
+
+                <div class="result-card">
+
+                    <span>
+                        Personal Best
+                    </span>
+
+                    <strong id="personalBest">
+                        0
+                    </strong>
+
+                    <small>
+                        WPM
+                    </small>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <span>
+                        Average Speed
+                    </span>
+
+                    <strong id="averageSpeed">
+                        0
+                    </strong>
+
+                    <small>
+                        WPM
+                    </small>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <span>
+                        Best Accuracy
+                    </span>
+
+                    <strong id="bestAccuracy">
+                        100%
+                    </strong>
+
+                    <small>
+                        Accuracy
+                    </small>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <span>
+                        Tests Completed
+                    </span>
+
+                    <strong id="testsCompleted">
+                        0
+                    </strong>
+
+                    <small>
+                        Tests
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- SPEED GOAL -->
+
+            <div class="progress-dashboard">
+
+                <div class="dashboard-card goal-dashboard">
+
+                    <div class="dashboard-card-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                SPEED GOAL
+                            </span>
+
+                            <h2>
+                                Personal Target
+                            </h2>
+
+                        </div>
+
+                        <span class="goal-icon">
+                            🎯
+                        </span>
+
+                    </div>
+
+
+                    <div class="goal-value-row">
+
+                        <strong id="wpmGoalValue">
+                            60
+                        </strong>
+
+                        <span>
+                            WPM
+                        </span>
+
+                    </div>
+
+
+                    <div class="goal-progress-bar">
+
+                        <div
+                            id="wpmGoalProgress"
+                            style="width:0%"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="goal-controls">
+
+                        <input
+                            type="number"
+                            id="wpmGoalInput"
+                            min="1"
+                            max="300"
+                            value="60"
+                            aria-label="WPM goal"
+                        >
+
+                        <button
+                            type="button"
+                            id="saveWpmGoal"
+                            class="primary-button"
+                        >
+                            Save Goal
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STREAK -->
+
+                <div class="dashboard-card streak-dashboard">
+
+                    <div class="dashboard-card-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                CONSISTENCY
+                            </span>
+
+                            <h2>
+                                Typing Streak
+                            </h2>
+
+                        </div>
+
+                        <span class="goal-icon">
+                            🔥
+                        </span>
+
+                    </div>
+
+
+                    <div class="streak-number">
+
+                        <strong id="progressCurrentStreak">
+                            0
+                        </strong>
+
+                        <span>
+                            days
+                        </span>
+
+                    </div>
+
+
+                    <p>
+                        Longest streak:
+                        <strong id="progressLongestStreak">
+                            0 days
+                        </strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- HISTORY -->
+
+            <div class="dashboard-card history-dashboard">
+
+                <div class="dashboard-card-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            TYPING HISTORY
+                        </span>
+
+                        <h2>
+                            Recent Tests
+                        </h2>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="clearHistory"
+                        class="small-danger-button"
+                    >
+                        Clear History
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="typingHistory"
+                    class="typing-history"
+                >
+
+                    <div class="empty-state">
+                        <span>📊</span>
+
+                        <h3>
+                            No tests yet
+                        </h3>
+
+                        <p>
+                            Complete your first typing test
+                            to see your history here.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- KEYBOARD HEATMAP -->
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-card-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            KEYBOARD ANALYTICS
+                        </span>
+
+                        <h2>
+                            Keyboard Heatmap
+                        </h2>
+
+                    </div>
+
+                    <span>
+                        ⌨️
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="keyboardHeatmap"
+                    class="keyboard-heatmap"
+                >
+
+                    <div class="heatmap-row">
+
+                        <span data-key="Q">Q</span>
+                        <span data-key="W">W</span>
+                        <span data-key="E">E</span>
+                        <span data-key="R">R</span>
+                        <span data-key="T">T</span>
+                        <span data-key="Y">Y</span>
+                        <span data-key="U">U</span>
+                        <span data-key="I">I</span>
+                        <span data-key="O">O</span>
+                        <span data-key="P">P</span>
+
+                    </div>
+
+
+                    <div class="heatmap-row">
+
+                        <span data-key="A">A</span>
+                        <span data-key="S">S</span>
+                        <span data-key="D">D</span>
+                        <span data-key="F">F</span>
+                        <span data-key="G">G</span>
+                        <span data-key="H">H</span>
+                        <span data-key="J">J</span>
+                        <span data-key="K">K</span>
+                        <span data-key="L">L</span>
+
+                    </div>
+
+
+                    <div class="heatmap-row">
+
+                        <span data-key="Z">Z</span>
+                        <span data-key="X">X</span>
+                        <span data-key="C">C</span>
+                        <span data-key="V">V</span>
+                        <span data-key="B">B</span>
+                        <span data-key="N">N</span>
+                        <span data-key="M">M</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACHIEVEMENTS -->
+
+            <div class="dashboard-card achievement-section">
+
+                <div class="dashboard-card-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            ACHIEVEMENTS
+                        </span>
+
+                        <h2>
+                            Your Milestones
+                        </h2>
+
+                    </div>
+
+                    <span>
+                        🏆
+                    </span>
+
+                </div>
+
+
+                <div class="achievement-grid">
+
+
+                    <div
+                        class="achievement locked"
+                        data-achievement="first-test"
+                    >
+
+                        <span>
+                            🎯
+                        </span>
+
+                        <h3>
+                            First Test
+                        </h3>
+
+                        <p>
+                            Complete your first typing test.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="achievement locked"
+                        data-achievement="40-wpm"
+                    >
+
+                        <span>
+                            ⚡
+                        </span>
+
+                        <h3>
+                            40 WPM
+                        </h3>
+
+                        <p>
+                            Reach 40 words per minute.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="achievement locked"
+                        data-achievement="60-wpm"
+                    >
+
+                        <span>
+                            🚀
+                        </span>
+
+                        <h3>
+                            60 WPM
+                        </h3>
+
+                        <p>
+                            Reach 60 words per minute.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="achievement locked"
+                        data-achievement="90-wpm"
+                    >
+
+                        <span>
+                            🏆
+                        </span>
+
+                        <h3>
+                            90 WPM
+                        </h3>
+
+                        <p>
+                            Reach 90 words per minute.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="achievement locked"
+                        data-achievement="accuracy"
+                    >
+
+                        <span>
+                            🎯
+                        </span>
+
+                        <h3>
+                            Accuracy Master
+                        </h3>
+
+                        <p>
+                            Reach 98% accuracy.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="achievement locked"
+                        data-achievement="ten-tests"
+                    >
+
+                        <span>
+                            🔟
+                        </span>
+
+                        <h3>
+                            10 Tests
+                        </h3>
+
+                        <p>
+                            Complete ten typing tests.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================================
+             NOTES PAGE
+        ======================================================= -->
+
+        <section
+            id="page-notes"
+            class="page"
+            data-page-content="notes"
+        >
+
+            <div class="inner-page-header">
+
+                <span class="section-label">
+                    STUDY NOTES
+                </span>
+
+                <h1>
+                    Coding & Computer Notes
+                </h1>
+
+                <p>
+                    Open your PDF notes directly from your
+                    <strong>notes/</strong> folder.
+                </p>
+
+            </div>
+
+
+            <!-- NOTES SEARCH -->
+
+            <div class="notes-search-box">
+
+                <div class="notes-search-icon">
+                    🔎
+                </div>
+
+                <input
+                    type="search"
+                    id="notesSearch"
+                    placeholder="Search notes by name..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="notes-layout">
+
+
+                <!-- NOTES SIDEBAR -->
+
+                <aside class="notes-sidebar">
+
+                    <div class="notes-sidebar-header">
+
+                        <span class="section-label">
+                            YOUR NOTES
+                        </span>
+
+                        <strong id="notesCount">
+                            0 PDFs
+                        </strong>
+
+                    </div>
+
+
+                    <div class="notes-language">
+
+                        <button
+                            type="button"
+                            class="note-filter active"
+                            data-note-filter="all"
+                        >
+                            All Notes
+                        </button>
+
+                        <button
+                            type="button"
+                            class="note-filter"
+                            data-note-filter="programming"
+                        >
+                            Programming
+                        </button>
+
+                        <button
+                            type="button"
+                            class="note-filter"
+                            data-note-filter="web"
+                        >
+                            Web Development
+                        </button>
+
+                        <button
+                            type="button"
+                            class="note-filter"
+                            data-note-filter="database"
+                        >
+                            Database
+                        </button>
+
+                        <button
+                            type="button"
+                            class="note-filter"
+                            data-note-filter="computer"
+                        >
+                            Computer Science
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="notesTopicList"
+                        class="notes-topic-list"
+                    ></div>
+
+                </aside>
+
+
+                <!-- NOTES CONTENT -->
+
+                <div class="notes-content">
+
+                    <div class="note-viewer">
+
+                        <div class="note-viewer-header">
+
+                            <div>
+
+                                <span class="section-label">
+                                    PDF VIEWER
+                                </span>
+
+                                <h2 id="selectedNoteTitle">
+                                    Select a note
+                                </h2>
+
+                            </div>
+
+
+                            <div class="note-viewer-actions">
+
+                                <button
+                                    type="button"
+                                    id="openNotesPDF"
+                                    class="secondary-button"
+                                    disabled
+                                >
+                                    ↗ Open
+                                </button>
+
+                                <button
+                                    type="button"
+                                    id="downloadNotesPDF"
+                                    class="primary-button"
+                                    disabled
+                                >
+                                    ↓ Download
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="noteViewerContent"
+                            class="note-viewer-content"
+                        >
+
+                            <div class="empty-state notes-empty-state">
+
+                                <span>
+                                    📖
+                                </span>
+
+                                <h3>
+                                    Choose a PDF
+                                </h3>
+
+                                <p>
+                                    Select a note from the left side
+                                    to read it here.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="notes-bottom-actions">
+
+                        <div>
+
+                            <strong>
+                                📁 notes/
+                            </strong>
+
+                            <p>
+                                Keep all your PDF files inside the
+                                <strong>notes</strong> folder.
+                            </p>
+
+                        </div>
+
+                        <span class="note-tip">
+                            PDF files are loaded locally.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ==========================================================
+         FOOTER
+    =========================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+
+            <div class="footer-brand">
+
+                <a
+                    href="#home"
+                    class="logo"
+                    data-page="home"
+                >
+
+                    <span class="logo-icon">
+                        ⌨
+                    </span>
+
+                    <span class="logo-text">
+                        Typing<span>Master</span>
+                    </span>
+
+                </a>
+
+                <p>
+                    Practice smarter. Type faster.
+                    Track your progress.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+
+                <div>
+
+                    <h4>
+                        Practice
+                    </h4>
+
+                    <a
+                        href="#practice"
+                        data-page="practice"
+                    >
+                        Practice Modes
+                    </a>
+
+                    <a
+                        href="#test"
+                        data-page="test"
+                    >
+                        Typing Test
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <h4>
+                        Challenge
+                    </h4>
+
+                    <a
+                        href="#challenge"
+                        data-page="challenge"
+                    >
+                        Daily Challenge
+                    </a>
+
+                    <a
+                        href="#custom"
+                        data-page="custom"
+                    >
+                        Custom Test
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <h4>
+                        Track
+                    </h4>
+
+                    <a
+                        href="#progress"
+                        data-page="progress"
+                    >
+                        Progress
+                    </a>
+
+                    <a
+                        href="#notes"
+                        data-page="notes"
+                    >
+                        Notes
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 TypingMaster
+            </span>
+
+            <span>
+                Made for better typing
+            </span>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ==========================================================
+         TOAST
+    =========================================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+        role="status"
+        aria-live="polite"
+    >
+
+        <span id="toastIcon">
+            ✓
+        </span>
+
+        <span id="toastMessage">
+            Ready
+        </span>
+
+    </div>
+
+
+
+    <!-- ==========================================================
+         PROFILE MODAL
+    =========================================================== -->
+
+    <div
+        id="modalOverlay"
+        class="modal-overlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle"
+        >
+
+            <button
+                type="button"
+                id="modalClose"
+                class="modal-close"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+
+            <div
+                id="modalIcon"
+                class="modal-icon"
+            >
+                👤
+            </div>
+
+
+            <h2 id="modalTitle">
+                Your Typing Profile
+            </h2>
+
+
+            <p id="modalDescription">
+                Track your personal typing journey,
+                speed and accuracy.
+            </p>
+
+
+            <div class="profile-modal-stats">
+
+                <div>
+
+                    <span>
+                        Best WPM
+                    </span>
+
+                    <strong id="modalBestWpm">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Tests
+                    </span>
+
+                    <strong id="modalTests">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Accuracy
+                    </span>
+
+                    <strong id="modalAccuracy">
+                        100%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="modalAction"
+                class="primary-button"
+            >
+                View Progress
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==========================================================
+         SCRIPT
+    =========================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
